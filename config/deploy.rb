@@ -10,6 +10,10 @@ set :repo_url, "https://github.com/hazim78/testapp.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/testapp"
 
+task :migrate_db do
+  run "cd #{current_path} && rake db:migrate"
+end
+
 namespace :bundle do
   desc "run bundle install and ensure all gem requirements are met"
   task :install do
@@ -18,6 +22,8 @@ namespace :bundle do
 end
 
 before "deploy:restart", "bundle:install"
+after "bundle:install", "migrate_db"
+
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
