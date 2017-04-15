@@ -10,6 +10,15 @@ set :repo_url, "https://github.com/hazim78/testapp.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/testapp"
 
+namespace :bundle do
+  desc "run bundle install and ensure all gem requirements are met"
+  task :install do
+    run "cd #{current_path} && bundle install --without=test --no-update-sources"
+  end
+end
+
+before "deploy:restart", "bundle:install"
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
