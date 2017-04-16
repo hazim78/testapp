@@ -14,7 +14,7 @@ default: &default
 development:
   <<: *default
   database: testapp_development
-  host: 192.168.1.234
+  host: 192.168.1.200
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,9 +22,9 @@ development:
 test:
   <<: *default
   database: testapp_test
-  host: 192.168.1.234
+  host: 192.168.1.200
 
 production:
   <<: *default
   database: testapp_production
-  host: 192.168.1.234
+  host: 192.168.1.200
